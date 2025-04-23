@@ -1,0 +1,46 @@
+[
+  {
+    "id": 101,
+    "title": "Lo-Fi Music Festival",
+    "description": "A weekend of chill beats and creative vibes.",
+    "date": "2024-05-20",
+    "time": "18:30",
+    "venue": "Taipei Music Center",
+    "price": 1200,
+    "image": "/images/lofi-festival.jpg",
+    "tags": ["music", "live", "lofi"]
+  },
+  {
+    "id": 102,
+    "title": "Sunset Jazz Nights",
+    "description": "Experience smooth jazz performances under the golden hour sky.",
+    "date": "2024-06-15",
+    "time": "19:00",
+    "venue": "Central Park, New York City",
+    "price": 45,
+    "image": "/images/sunset-jazz.jpg",
+    "tags": ["jazz", "outdoor", "sunset"]
+  },
+  {
+    "id": 103,
+    "title": "Tokyo Synthwave Showcase",
+    "description": "A neon-lit night featuring top Synthwave artists from Japan and beyond.",
+    "date": "2024-07-05",
+    "time": "21:00",
+    "venue": "Shibuya O-East, Tokyo",
+    "price": 3200,
+    "image": "/images/tokyo-synth.jpg",
+    "tags": ["synthwave", "live", "japan"]
+  },
+  {
+    "id": 104,
+    "title": "Ambient Forest Retreat",
+    "description": "Immerse yourself in relaxing ambient music deep in the Black Forest.",
+    "date": "2024-08-10",
+    "time": "16:00",
+    "venue": "Schwarzwald, Germany",
+    "price": 80,
+    "image": "/images/ambient-forest.jpg",
+    "tags": ["ambient", "nature", "retreat"]
+  }
+]
