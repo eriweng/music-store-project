@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 
 export default function Events() {
   // build the data first!
@@ -32,7 +34,8 @@ export default function Events() {
   })
 
   return (
-    <div>
+    <div className="events container">
+      <Header/>
       <h2>活動清單</h2>
       {events.length === 0 ? (
         <p>載入中...</p>
@@ -49,6 +52,7 @@ export default function Events() {
           ))}
         </div>
       )}
+      <Footer/>
     </div>
   )
 }

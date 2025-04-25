@@ -1,5 +1,7 @@
 // import tools we need here...
 import { useEffect, useState } from 'react';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 
 export default function Music() {
   // build the data first!
@@ -38,7 +40,8 @@ export default function Music() {
 
   // return things we want to see on website with the data we've got already
   return (
-    <div>
+    <div className='music container'>
+      <Header/>
       <h2>專輯清單</h2>
       {albums.length === 0 ? (
         <p>載入中...</p>
@@ -54,6 +57,7 @@ export default function Music() {
           ))}
         </div>
       )}
+      <Footer/>
     </div>
   );
 }
