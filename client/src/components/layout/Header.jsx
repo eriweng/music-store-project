@@ -19,13 +19,14 @@ export default function Header() {
   )
 
   return (
-    <header className="bg-yellow-500">
+    <header className=" bg-black">
       <div id="header-wrapper" className="container"> 
         {/* Mobile Menu Icon */}
+        {/* md（medium, 768px） */}
         <button
-        className="md:hidden"
+        className="md:hidden text-white"
         onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
-          {isOpen? <X size={24}/> : <Menu size={24}/>}
+          {isOpen? <X size={20}/> : <Menu size={20}/>}
         </button>
         {/* Logo go here */}
        <Link to="/"> 
@@ -40,8 +41,8 @@ export default function Header() {
         </nav>
       </div>
       {/* search and cart icon */}
-      <button><ShoppingCart size={24} className="text-white"/></button>
-      <button><Search size={24} className="text-white"/></button>
+      <button className="mr-1"><Search size={24} className="text-white"/></button>
+      <button><ShoppingCart size={24} className=" text-white"/></button>
       {/* Mobile Dropdown Nav */}
       {isOpen && (
         <nav className="flex flex-col gap-4 mt-4 text-sm md:hidden">

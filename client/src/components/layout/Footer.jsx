@@ -13,7 +13,7 @@ export default function Footer () {
   return (
     <>
      <footer>
-      <div id="footer-wrapper" className="footer container text-white bg-yellow-500">
+      <div id="footer-wrapper" className="footer container text-white bg-black">
         <Link to="/"><img src="./assets/RanVin_wh.png" alt="" /></Link>
         <div id="footerLink-wrapper" className="flex">
           {footerLink}
