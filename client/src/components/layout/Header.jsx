@@ -45,7 +45,7 @@ export default function Header() {
       <button><ShoppingCart size={24} className=" text-white"/></button>
       {/* Mobile Dropdown Nav */}
       {isOpen && (
-        <nav className="flex flex-col gap-4 mt-4 text-sm md:hidden">
+        <nav className="flex flex-col gap-4 mt-4 text-sm md:hidden text-white">
           {navLinks}
         </nav>
       )}

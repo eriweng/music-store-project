@@ -1,8 +1,9 @@
 import { Pause, Play } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 
-export default function MiniPlayer({ track, onTogglePlay, isPlaying, testSound}) {
+export default function MiniPlayer({ track, onTogglePlay, isPlaying }) {
   if (!track) return null; //沒有歌曲時不顯示
+
   const [timeProgress, setTimeProgress] = useState(0); //目前播放秒數 time point
   const [duration, setDuration] = useState(0); //音訊長度（秒）
   const audioRef = useRef();
@@ -18,28 +19,36 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying, testSound})
     // volume: 1,
     // play: ƒ play(),
     // pause: ƒ pause(),}
-    if (!audio) return
-    
-    if(isPlaying) {
-      audio.play()
+    if (!audio) return;
+
+    console.log("載入音檔:", track.audioPreview);
+    console.log("目前播放狀態:", isPlaying);
+
+    if (isPlaying) {
+      audio.play();
     } else {
-      audio.pause()
+      audio.pause();
     }
-    
+
     const updateProgress = () => setTimeProgress(audio.currentTime); //取的每次播放時間點
+    const updateDuration = () => setDuration(audio.duration); //更新音訊長度， state changes
+    console.log("音訊長度:", audio.duration);
+
     audio.addEventListener("timeupdate", updateProgress); //每次時間點更新，state changes
-    audio.addEventListener("loadedmetadata", () => setDuration(audio.duration)); // 更新音訊長度， state changes
+    audio.addEventListener("loadedmetadata", updateDuration);
 
     return () => {
-      audio.removeEventListener("timeupdate", updateProgress); //結束，清理監聽器
+      audio.removeEventListener("timeupdate", updateProgress); 
+      audio.removeEventListener("loadedmetadata", updateDuration)
+      //結束，清理監聽器
     };
-  }, []);
+  }, [track, isPlaying]);
 
   const handleProgressChange = (e) => {
-    const newTime = Number(e.target.value)
-    audioRef.current.currentTime = newTime
-    setTimeProgress(newTime)
-  }
+    const newTime = Number(e.target.value);
+    audioRef.current.currentTime = newTime;
+    setTimeProgress(newTime);
+  };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-zinc-900 text-white px-4 py-2 flex items-center gap-4 shadow-lg">
@@ -52,8 +61,8 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying, testSound})
         <div className="text-sm font-semibold truncate">{track.title}</div>
         <div className="text-sm text-zinc-400 truncate">{track.artist}</div>
       </div>
-      <audio ref={audioRef} src={testSound} />
-      <input
+      <audio controls src="/audios/moonlight-drive.mp3" />
+      {/* <input
         type="range"
         min="0"
         max={duration}
@@ -65,7 +74,7 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying, testSound})
       </span>
       <button onClick={onTogglePlay}>
         {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-      </button>
+      </button> */}
     </div>
   );
 }

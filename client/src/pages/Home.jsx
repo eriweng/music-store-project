@@ -5,17 +5,13 @@ import Footer from '../components/layout/Footer';
 import MusicCard from '../components/MusicCard';
 import MiniPlayer from "../components/MiniPlayer";
 import useSound from "use-sound"
-import testSound from "/public/audios/cyber-march.mp3"
+
 
 export default function Home() {
 // 所需資料都放這：
   const [albums, setAlbums] = useState([]) 
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [play,{stop}] = useSound(testSound)
-  
-
-
 // 作業區：連接 API 資料
   useEffect(() => {
     fetch('http://localhost:5000/api/albums')
@@ -41,19 +37,13 @@ export default function Home() {
 
 // 控制迷你播放器的曲目／抽換曲目
   const handlePlay = (track) => {
-    setCurrentTrack({...track, audio: testSound})
-
-    // setIsPlaying(true)
+    setCurrentTrack(track)
+    console.log(track)
+    setIsPlaying(true)
    }
 // 控制迷你播放器 播放鍵／暫停鍵
   const togglePlay = () => {
-    if (isPlaying) {
-      stop()
-      setIsPlaying(false)
-    } else {
-      play()
-      setIsPlaying(true)
-    }
+      setIsPlaying((prev) => !prev)
   }
 // 作業區：渲染專輯區塊
    const musicCardElement = albums.map((album) => {
@@ -62,7 +52,7 @@ export default function Home() {
       <MusicCard 
         key = {album.id}
         {...album}
-        onPlay = {handlePlay}
+        onPlay = {(track) => {handlePlay(track)}}
       />
     )
    })
@@ -101,7 +91,6 @@ export default function Home() {
       track={currentTrack}
       isPlaying={isPlaying}
       onTogglePlay={togglePlay}
-      testSound = {testSound}
     />
     </>
   );
