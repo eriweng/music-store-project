@@ -1,7 +1,7 @@
-import { Pause, Play } from "lucide-react";
+import { Pause, Play, X} from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 
-export default function MiniPlayer({ track, onTogglePlay, isPlaying }) {
+export default function MiniPlayer({ track, onTogglePlay, isPlaying, onClose }) {
   if (!track) return null; //沒有歌曲時不顯示
 
   const [timeProgress, setTimeProgress] = useState(0); //目前播放秒數 time point
@@ -36,10 +36,13 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying }) {
 
     audio.addEventListener("timeupdate", updateProgress); //每次時間點更新，state changes
     audio.addEventListener("loadedmetadata", updateDuration);
+    audio.addEventListener("error", () => {
+      console.error("音訊載入失敗，可能路徑錯誤或檔案不存在:", audio.src);
+    });
 
     return () => {
-      audio.removeEventListener("timeupdate", updateProgress); 
-      audio.removeEventListener("loadedmetadata", updateDuration)
+      audio.removeEventListener("timeupdate", updateProgress);
+      audio.removeEventListener("loadedmetadata", updateDuration);
       //結束，清理監聽器
     };
   }, [track, isPlaying]);
@@ -50,8 +53,14 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying }) {
     setTimeProgress(newTime);
   };
 
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60) || 0
+    const s = Math.floor(seconds % 60) || 0
+    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`
+  }
+
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-zinc-900 text-white px-4 py-2 flex items-center gap-4 shadow-lg">
+     <div className="fixed bottom-0 left-0 right-0 bg-zinc-900 text-white px-4 py-2 flex items-center gap-4 shadow-lg">
       <img
         src={track.coverImage}
         alt={track.title}
@@ -61,20 +70,24 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying }) {
         <div className="text-sm font-semibold truncate">{track.title}</div>
         <div className="text-sm text-zinc-400 truncate">{track.artist}</div>
       </div>
-      <audio controls src="/audios/moonlight-drive.mp3" />
-      {/* <input
+
+      <audio ref={audioRef} src={track.audioPreview} />
+      <span className="text-xs w-10 text-right">{formatTime(timeProgress)}</span>
+      <input
         type="range"
         min="0"
         max={duration}
         value={timeProgress}
         onChange={handleProgressChange}
+        className="w-full h-1 rounded-lg appearance-none bg-gray-600 accent-white max-w-[500px]"
       />
-      <span>
-        {Math.floor(timeProgress)} / {Math.floor(duration)} 秒
-      </span>
+       <span className="text-xs w-10">{formatTime(duration)}</span>
       <button onClick={onTogglePlay}>
         {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-      </button> */}
+      </button>
+      <button onClick={onClose}>
+        <X />
+      </button>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 // server's router center is here
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const app = express();
 const albumsRouter = require('./routes/albums'); 
@@ -7,8 +8,11 @@ const eventsRouter = require('./routes/events')
   // ✅ 引入路由模組
 
 const port = 5000;
+
+
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../public')))
 
 // ✅ 使用路由：加上正確的前綴 "/api/albums"
 app.use('/api/albums', albumsRouter);
