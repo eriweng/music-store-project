@@ -10,7 +10,7 @@ export default function BannerCarousel() {
     <>
       {/* <!-- Carousel wrapper --> */}
       <div 
-      className="relative overflow-hidden w-full h-[330px] md:h-[480px] xl:h-[640px]"
+      className="relative overflow-hidden w-full h-[310px] sm:h-[440px] md:h-[580px] xl:h-[640px]"
       data-carousel="slide"
       data-carousel-interval="5000"
       >
@@ -52,7 +52,7 @@ export default function BannerCarousel() {
         </div>
         
       {/* <!-- Slider indicators --> */}
-      <div className="absolute z-30 hidden rounded-[1vw] bg-white/20 p-1 px-4 bottom-5 -translate-x-1/2 left-1/2 space-x-3 rtl:space-x-reverse xl:flex">
+      <div className="absolute z-30 hidden rounded-[1vw] bg-white/50 p-1 px-4 bottom-5 -translate-x-1/2 left-1/2 space-x-3 rtl:space-x-reverse xl:flex">
         {[...Array(3)].map((_, i) => {
           return (
           <>
@@ -97,6 +97,7 @@ export default function BannerCarousel() {
           <span className="sr-only">Previous</span>
         </span>
       </button>
+
       <button
         type="button"
         className="absolute group right-0 end-0 z-30 h-full flex items-center justify-center px-4 cursor-pointer group focus:outline-none"
