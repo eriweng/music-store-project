@@ -20,7 +20,7 @@ export default function Footer () {
         </div>
       <hr />
       <div id="powerByRanvin">
-        <span>Powered by RANVIN</span>
+        <span>Powered by &reg; <a href="#top">RANVIN</a></span>
       </div>
       </div>
      </footer>

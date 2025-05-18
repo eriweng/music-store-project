@@ -11,14 +11,16 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying, onClose }) 
 
   useEffect(() => {
     const audio = audioRef.current;
-    // 得到 => HTMLAudioElement {
+    // 得到 => HTMLAudioElement
+    // {
     // src: "http://example.com/audio.mp3",
     // currentTime: 0,
     // duration: 180,
     // paused: true,
     // volume: 1,
     // play: ƒ play(),
-    // pause: ƒ pause(),}
+    // pause: ƒ pause(),
+    // }
     if (!audio) return;
 
     console.log("載入音檔:", track.audioPreview);
@@ -35,7 +37,7 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying, onClose }) 
     console.log("音訊長度:", audio.duration);
 
     audio.addEventListener("timeupdate", updateProgress); //每次時間點更新，state changes
-    audio.addEventListener("loadedmetadata", updateDuration);
+    audio.addEventListener("loadedmetadata", updateDuration); //每次進度條更新，state changes
     audio.addEventListener("error", () => {
       console.error("音訊載入失敗，可能路徑錯誤或檔案不存在:", audio.src);
     });
@@ -71,7 +73,7 @@ export default function MiniPlayer({ track, onTogglePlay, isPlaying, onClose }) 
         <div className="text-sm text-zinc-400 truncate">{track.artist}</div>
       </div>
 
-      <audio ref={audioRef} src={track.audioPreview} />
+      <audio ref={audioRef} src={track.audioPreview} controls className="-webkit-media-controls-panel-bg-red-500"/>
       <span className="text-xs w-10 text-right">{formatTime(timeProgress)}</span>
       <input
         type="range"

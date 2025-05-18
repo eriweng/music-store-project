@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/layout/Header";
+import Main from "../components/layout/Main";
 import Footer from "../components/layout/Footer";
 import MusicCard from "../components/musicCard";
 import MiniPlayer from "../components/MiniPlayer";
-import useSound from "use-sound";
 
 export default function Home() {
   // 所需資料都放這：
@@ -44,7 +44,6 @@ export default function Home() {
   // 控制迷你播放器：播放鍵／暫停鍵
   const togglePlay = () => {
     setIsPlaying((prev) => !prev);
-    
   };
 
   // 作業區：渲染專輯區塊
@@ -60,20 +59,20 @@ export default function Home() {
     );
   });
 
+
   return (
     <>
       <div className="home container min-h-screen bg-black">
         <Header />
         {/* main */}
-        <main>
-          <div className="main container h-[380px] bg-slate-300 my-8"></div>
-        </main>
+        <Main />
         {/* music block */}
         <div
           className="music container grid 
-      grid-cols-2 gap-x-2 gap-y-5
+      grid-cols-2 gap-x-2 gap-y-10
       md:grid-cols-3
-      xl:grid-cols-4"
+      xl:grid-cols-4
+      m-auto"
         >
           {musicCardElement}
         </div>
@@ -96,7 +95,7 @@ export default function Home() {
         {/* footer is here */}
         <Footer />
       </div>
-       {/* Mini player is here */}
+      {/* Mini player is here */}
       {isPlayerVisible && currentTrack && (
         <MiniPlayer
           track={currentTrack}

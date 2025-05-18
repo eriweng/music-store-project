@@ -2,13 +2,18 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}"],
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "node_modules/flowbite/**/*.{js,jsx,ts,tsx,html}",
+
+  ],
   theme: {
     extend: {},
     container: {
-      center: true,
+    center: true,
     }
   },
-  plugins: [],
+  plugins: [
+     require('flowbite/plugin')
+  ],
 }
 

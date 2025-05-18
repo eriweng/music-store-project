@@ -12,7 +12,7 @@ export default function MusicCard ({state, mode, coverImage, title, artist, song
       </div>
       {/* album cover */}
       <div className="albumCover">
-        <img className="aspect-square w-[250px] h-[250px] object-cover border-[1px] border-white hover:blur-sm" src={coverImage} alt={title} />
+        <img className="aspect-square w-full max-w-[300px] min-w-[250px] object-cover border-[1px] border-white hover:blur-sm" src={coverImage} alt={title} />
       </div>
       {/* title and play btn */}
       <div className="flex justify-between py-1 text-white">
