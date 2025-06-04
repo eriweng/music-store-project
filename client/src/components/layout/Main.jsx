@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom"
 import BannerCarousel from "../BannerCarousel"
-import CarouselTest from "../CarouselTest"
 
 export default function Main () {
 

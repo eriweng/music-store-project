@@ -1,5 +1,6 @@
 import { initCarousels } from "flowbite";
 import { useEffect} from "react"
+const x = [11, 22, 33]
 
 export default function BannerCarousel() {
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function BannerCarousel() {
           data-carousel-item
         >
           <img
-            key= "1"
+            key="1"
             src="./assets/images/banners/banner-1.jpg"
             className="absolute block w-full max-h-[640px] object-cover"
             alt="banner-1"
@@ -53,26 +54,24 @@ export default function BannerCarousel() {
         
       {/* <!-- Slider indicators --> */}
       <div className="absolute z-30 hidden rounded-[1vw] bg-white/50 p-1 px-4 bottom-5 -translate-x-1/2 left-1/2 space-x-3 rtl:space-x-reverse xl:flex">
-        {[...Array(3)].map((_, i) => {
+        {x.map((item) => {
+        // console.log(item)
           return (
-          <>
           <button
-            key={i}
+            key={item}
             type="button"
             className="w-2 h-2 rounded-full hover:bg-white/100"
             // aria-current 告知目前顯示的幻燈片
-            aria-current={i === 0 ? "true": "false"}
+            aria-current={item === 0 ? "true": "false"}
             // aria-label 提供語音輔助的描述
-            aria-label={`Slide ${i+1}`}
+            aria-label={`Slide ${item+11}`}
             // data-carousel-slide-to 標記幻燈片索引，方便控制輪播
-            data-carousel-slide-to={i}
+            data-carousel-slide-to={item}
           ></button>
-          </>
         )})}
       </div>
 
       {/* <!-- Slider controls --> */}
-      {/* bottom-0 234px-ok 384px-往下掉  */}
       <button
         type="button"
         className="absolute group left-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
