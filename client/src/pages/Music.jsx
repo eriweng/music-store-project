@@ -7,8 +7,7 @@ export default function Music() {
   // build the data first!
   // => where should we put it in?
   // => how could we get the data? 
-  const [albums, setAlbums] = useState([]);
-
+  const [albums, setAlbums] = useState([])
   useEffect(() => {
     // fetch 跟 http://localhost:5000/api/albums 要 API
     fetch('http://localhost:5000/api/albums')

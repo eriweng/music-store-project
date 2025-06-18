@@ -2,36 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 
-export default function Events() {
-  // build the data first!
-  // => where should we put it in?
-  const [events, setEvents] = useState([])
-  // => how could we get the data? 
-
-  useEffect(() => {
-    // ask for API
-    fetch('http://localhost:5000/api/events')
-
-      .then(res => {
-        // 先確認有無接上線？ any response? if not throw an Error
-        console.log("API status", res.status)
-        if (!res.ok) throw new Error("API 回傳錯誤")
-          return res.json()
-      })
-      // 回傳的資料叫 data, check the data is an Array or not?
-      .then(data => {
-        if (Array.isArray(data)) {
-           // if it's an Array, put them in to Albums
-           setEvents(data) 
-        } else {
-          //if it's not
-          console.error("❌ API 資料不是陣列：", data)
-        }
-      })
-      .catch (err =>
-         console.error("❌ API 請求錯誤：", err)
-      )
-  })
+export default function Events(event) {
 
   return (
     <div className="events container">

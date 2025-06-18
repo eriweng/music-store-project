@@ -3,7 +3,7 @@ import { Link, useActionData } from "react-router-dom";
 import Header from "../components/layout/Header";
 import Main from "../components/layout/Main";
 import Footer from "../components/layout/Footer";
-import MusicCard from "../components/musicCard";
+import MusicCard from "../components/MusicCard";
 import MiniPlayer from "../components/MiniPlayer";
 import EventCard from "../components/EventCard";
 
@@ -91,38 +91,30 @@ export default function Home() {
 
   const eventCardElement = events.map((event) => {
     // console.log(event.image)
-    return <EventCard key={event.id} {...event} />;
+    return <EventCard key={event.id} event={event} />;
   });
+
   return (
     <>
-      <div className="home container min-h-screen bg-black">
+      <div className="home container min-w-[375px] min-h-screen bg-black">
         <Header />
         {/* main */}
         <Main />
         {/* music block */}
-        <div
-          className="music container grid 
-      grid-cols-2 gap-x-2 gap-y-10
-      md:grid-cols-3
-      xl:grid-cols-4
-      m-auto"
-        >
-          {musicCardElement}
+        <div className="container">
+          <h2 className="text-white">MUSIC</h2>
+          <hr className="border-normal" />
+          <div className="music my-12 grid grid-cols-2 gap-x-2 gap-y-10 items-center md:grid-cols-3 xl:grid-cols-4">
+            {musicCardElement}
+          </div>
         </div>
-        <div className="flex justify-center ">
-          <Link to="/music">
-            <button className="more-button text-white md:hidden">More</button>
-          </Link>
-        </div>
+
         {/* music block end here*/}
         {/* events block */}
-        <div className="event">
-          <div className="flex justify-center ">
-            <Link to="/events">
-              <button className="event-button text-white">Events</button>
-            </Link>{" "}
-            <EventCard />
-          </div>
+        <div className="event container">
+          <h2 className="text-white">EVENTS</h2>
+          <hr className="border-normal" />
+          <div className="my-12">{eventCardElement}</div>
         </div>
 
         {/* subscribe form is here */}

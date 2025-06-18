@@ -93,66 +93,77 @@ export default function MiniPlayer({
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 bg-zinc-900 text-white px-4 py-2 flex items-center gap-5 justify-between shadow-lg">
-        <div className="flex gap-5">
+      <div className="fixed bottom-0 right-0 w-full sm:w-auto bg-zinc-900 text-white px-3 py-2 flex items-center justify-between shadow-lg">
+        {/* 專輯封面+資訊 */}
+        <div className="w-[90px] mx-auto sm:mr-5">
           {track.coverImage && (
             <img
               key={track.id}
               src={track.coverImage}
               alt={track.title}
-              className="w-12 h-12 object-cover rounded"
+              className="w-fill object-cover aspect-square rounded-md"
             />
           )}
-
-          <div className="flex-1 flex-col">
-            <div className="text-sm font-semibold truncate">{track.title}</div>
-            <div className="text-sm text-zinc-400 truncate">{track.artist}</div>
+        </div>
+        <div className="flex flex-col mx-auto">
+          <div className="flex flex-col items-center pt-1 ">
+            <span className="inline-block text-sm font-semibold truncate">
+              {track.title}
+            </span>
+            <span className="inline-block text-sm text-zinc-400 truncate">
+              {track.artist}
+            </span>
           </div>
-        </div>
 
-        <audio ref={audioRef} src={track.audioPreview} />
+          <audio ref={audioRef} src={track.audioPreview} />
 
-        {/* 播放進度 */}
-        <div className="flex gap-5 items-center w-auto">
-          <span className="text-xs w-10 text-right">
-            {formatTime(timeProgress)}
-          </span>
-          <input
-            type="range"
-            min="0"
-            max={duration}
-            value={timeProgress}
-            onChange={handleProgressChange}
-            className="w-full h-1 rounded-lg bg-gray-600 accent-white"
-          />
-          <span className="text-xs w-10">{formatTime(duration)}</span>
-        </div>
-        {/* 播放 音量 關閉 按鈕 */}
-        <div className="flex gap-3">
-          <button className="w-10" onClick={onTogglePlay}>
-            {isPlaying ? <Pause size={18} /> : <Play size={18} />}
-          </button>
-          <div className="relative">
-            <button className="w-10" onClick={toggleVolumeControl}>
-              <Volume2 size={18} />
+          {/* 播放進度 */}
+          <div className="flex gap-5 items-center p-2 ">
+            <span className="text-xs w-10 text-right">
+              {formatTime(timeProgress)}
+            </span>
+            <input
+              type="range"
+              min="0"
+              max={duration}
+              value={timeProgress}
+              onChange={handleProgressChange}
+              className="w-full h-1 rounded-lg bg-gray-600 accent-white"
+            />
+            <span className="text-xs w-10">{formatTime(duration)}</span>
+          </div>
+
+          {/* 播放 音量 關閉 按鈕 */}
+          <div className="flex ml-6 justify-center ">
+            <button className="w-10 align-middle" onClick={toggleVolumeControl}>
+              <Volume2 className="size-[18]" />
             </button>
-            {showVolumeControl && (
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-zinc-800 p-2 rounded-md">
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.01}
-                  value={volume}
-                  onChange={handleVolumeChange}
-                  className="h-1 bg-gray-600 accent-white"
-                />
-              </div>
-            )}
+            <button className="w-10 align-middle" onClick={onTogglePlay}>
+              {isPlaying ? (
+                <Pause className="size-[18]" />
+              ) : (
+                <Play className="size-[18]" />
+              )}
+            </button>
+            <div className="relative">
+              {showVolumeControl && (
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-zinc-800 p-2 rounded-md ">
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    className="h-1 bg-gray-600 accent-white"
+                  />
+                </div>
+              )}
+            </div>
+            <button className="w-10" onClick={onClose}>
+              <X className="size-[18]" />
+            </button>
           </div>
-          <button className="w-10" onClick={onClose}>
-            <X size={18} />
-          </button>
         </div>
       </div>
     </>

@@ -7,7 +7,7 @@
     "time": "18:30",
     "venue": "Taipei Music Center",
     "price": 1200,
-    "image": "/images/lofi-festival.jpg",
+    "image": "./assets/images/events/lofi-festival.jpg",
     "tags": ["deep house", "live"]
   },
   {
@@ -18,7 +18,7 @@
     "time": "19:00",
     "venue": "Central Park, New York City",
     "price": 45,
-    "image": "/images/sunset-jazz.jpg",
+    "image": "./assets/images/events/sunset-jazz.jpg",
     "tags": ["jazz", "outdoor", "sunset"]
   },
   {
@@ -29,7 +29,7 @@
     "time": "21:00",
     "venue": "Shibuya O-East, Tokyo",
     "price": 3200,
-    "image": "/images/tokyo-synth.jpg",
+    "image": "./assets/images/events/tokyo-synth.jpg",
     "tags": ["synthwave", "live", "japan"]
   },
   {
@@ -40,7 +40,7 @@
     "time": "16:00",
     "venue": "Schwarzwald, Germany",
     "price": 80,
-    "image": "/images/ambient-forest.jpg",
+    "image": "./assets/images/events/ambient-forest.jpg",
     "tags": ["ambient", "nature", "retreat"]
   }
 ]

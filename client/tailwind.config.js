@@ -4,16 +4,16 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     "node_modules/flowbite/**/*.{js,jsx,ts,tsx,html}",
-
   ],
   theme: {
-    extend: {},
+    extend: {
+      borderWidth: {
+        normal: "0.6px"
+      },
+    },
     container: {
-    center: true,
-    }
+      center: true,
+    },
   },
-  plugins: [
-     require('flowbite/plugin')
-  ],
-}
-
+  plugins: [require("flowbite/plugin")],
+};

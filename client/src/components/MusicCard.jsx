@@ -11,16 +11,16 @@ export default function MusicCard({
   onPlay,
 }) {
   return (
-    <div className="card container group w-full max-w-[250px] transition-all">
+    <div className="card sm:w-max-20 md:w-max-75 overflow-hidden group">
       {/* out now and single */}
-      <div className="flex justify-between text-white text-[13px]">
+      <div className="flex justify-between text-white text-[1rem]">
         <span className="state">{state}</span>
         <span className="mode">{mode}</span>
       </div>
       {/* album cover */}
-      <div className="albumCover">
+      <div className="albumCover sm:w-max-20 md:w-max-75 border-[1px] border-white">
         <img
-          className="aspect-square w-full max-w-[300px] min-w-[250px] object-cover border-[1px] border-white hover:blur-sm"
+          className="aspect-square w-full object-cover  hover:blur-sm"
           src={coverImage}
           alt={title}
         />
