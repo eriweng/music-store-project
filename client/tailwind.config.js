@@ -8,8 +8,9 @@ export default {
   theme: {
     extend: {
       borderWidth: {
-        normal: "0.6px"
+        normal: "0.6px",
       },
+
     },
     container: {
       center: true,

@@ -6,6 +6,7 @@ import Footer from "../components/layout/Footer";
 import MusicCard from "../components/MusicCard";
 import MiniPlayer from "../components/MiniPlayer";
 import EventCard from "../components/EventCard";
+import EventPresents from "../components/EventPresents";
 
 export default function Home() {
   // 所需資料都放這：
@@ -101,26 +102,33 @@ export default function Home() {
         {/* main */}
         <Main />
         {/* music block */}
-        <div className="container">
+        <div className="sm-container-space lg:lg-container-space">
           <h2 className="text-white">MUSIC</h2>
           <hr className="border-normal" />
-          <div className="music my-12 grid grid-cols-2 gap-x-2 gap-y-10 items-center md:grid-cols-3 xl:grid-cols-4">
+          <div className="music my-12 grid grid-cols-2 gap-x-2 gap-y-10 items-center lg:grid-cols-3 xl:grid-cols-4">
             {musicCardElement}
           </div>
         </div>
 
         {/* music block end here*/}
+
         {/* events block */}
-        <div className="event container">
+        <div className="event sm-container-space lg:lg-container-space">
           <h2 className="text-white">EVENTS</h2>
           <hr className="border-normal" />
-          <div className="my-12">{eventCardElement}</div>
+          <div className="lg:grid lg:grid-cols-2 lg:grid-flow-col lg:gap-8">
+            <EventPresents />
+            <hr className="lg:hidden border-normal" />
+            <div className="event-block-group flex flex-col gap-5 my-5 justify-between">
+              <div className="my-12">{eventCardElement}</div>
+            </div>
+          </div>
         </div>
-
-        {/* subscribe form is here */}
+        {/* <hr className="sm-container-space lg:lg-container-space border-normal mb-12" /> */}
         {/* footer is here */}
         <Footer />
       </div>
+
       {/* Mini player is here */}
       {isPlayerVisible && currentTrack && (
         <MiniPlayer

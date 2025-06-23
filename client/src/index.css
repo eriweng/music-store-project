@@ -8,3 +8,10 @@
   /* text-align: center; */
   background-color: black;
 }
+
+.sm-container-space {
+  @apply mx-[15px] my-[30px];
+}
+.lg-container-space {
+  @apply mx-[50px] my-[40px];
+}

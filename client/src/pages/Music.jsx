@@ -1,63 +1,88 @@
 // import tools we need here...
-import { useEffect, useState } from 'react';
-import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
+import { useEffect, useState } from "react";
+import Header from "../components/layout/Header";
+import MusicCard from "../components/MusicCard";
+import Footer from "../components/layout/Footer";
+import MiniPlayer from "../components/MiniPlayer";
 
 export default function Music() {
-  // build the data first!
-  // => where should we put it in?
-  // => how could we get the data? 
-  const [albums, setAlbums] = useState([])
+  const [albums, setAlbums] = useState([]);
+  const [currentTrack, setCurrentTrack] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlayerVisible, setIsPlayerVisible] = useState();
+
   useEffect(() => {
-    // fetch 跟 http://localhost:5000/api/albums 要 API
-    fetch('http://localhost:5000/api/albums')
-    
-      .then(res => {
-        console.log("🌐 API status:", res.status);
-        // 先確認有無接上線？ any response? if not throw an Error
-        if (!res.ok) throw new Error("API 回傳錯誤");
-        // if it did have, give us res.json()
+    // 載入 albums.json
+    fetch("http://localhost:5000/api/albums")
+      .then((res) => {
+        console.log("albums API status:", res.status);
+        if (!res.ok) throw new Error("albums API res failed");
         return res.json();
       })
-      .then(data => {
-        console.log("✅ API 回傳資料：", data);
-        // 回傳的資料叫 data, check the data is an Array or not?
+      .then((data) => {
+        console.log("albums API data:", data);
         if (Array.isArray(data)) {
-          // if it's an Array, put them in to Albums
           setAlbums(data);
         } else {
-          // if it's not
-          console.error("❌ API 資料不是陣列：", data);
+          console.error("albums data is not Array");
         }
       })
-      // check this request's statement
-      .catch(err => {
-        console.error("❌ API 請求錯誤：", err);
+      .catch((err) => {
+        console.error("albums API req failed");
       });
   }, []);
-  // [] means this function only work on the first time when client asks for
+  // 控制迷你播放器的曲目：抽換曲目/ 觸發需要轉為 true 的項目
+  const handlePlay = (track) => {
+    if (currentTrack && currentTrack.id === track.id) {
+      setIsPlaying(true);
+      setIsPlayerVisible(true);
+      return;
+    }
+    // console.log(track);
+    setCurrentTrack(track);
+    setIsPlaying(true);
+    setIsPlayerVisible(true);
+  };
+  // 控制迷你播放器：播放鍵／暫停鍵
+  const togglePlay = () => {
+    setIsPlaying((prev) => !prev);
+  };
 
-  // return things we want to see on website with the data we've got already
+  const musicCardElement = albums.map((album) => {
+    return (
+      <MusicCard
+        key={album.id}
+        {...album}
+        onPlay={(track) => {
+          handlePlay(track);
+        }}
+        isPlaying={isPlaying}
+      />
+    );
+  });
+
   return (
-    <div className='music container'>
-      <Header/>
-      <h2>專輯清單</h2>
-      {albums.length === 0 ? (
-        <p>載入中...</p>
-      ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-          {albums.map(album => (
-            <div key={album.id} style={{ border: '1px solid #ccc', padding: '1rem' }}>
-              <img src={album.coverImage} alt={album.title} style={{ width: '100%' }} />
-              <h3>{album.title}</h3>
-              <p>{album.artist}</p>
-              <small>{album.songs.length} 首歌</small>
-            </div>
-          ))}
+    <>
+      <div className=" music-page container">
+        <Header />
+        {/* music block */}
+        <div className="music-section sm-container-space lg:lg-container-space">
+          <h1 className="text-right text-white">MUSIC</h1>
+          <hr className="border-normal" />
+          <div className="music my-12 grid grid-cols-2 gap-x-2 gap-y-10 items-center md:grid-cols-3 xl:grid-cols-4">
+            {musicCardElement}
+          </div>
         </div>
+        <Footer />
+      </div>
+      {isPlayerVisible && currentTrack && (
+        <MiniPlayer
+          track={currentTrack}
+          isPlaying={isPlaying}
+          onTogglePlay={togglePlay}
+          onClose={() => setIsPlayerVisible(false)}
+        />
       )}
-      <Footer/>
-    </div>
+    </>
   );
 }
-

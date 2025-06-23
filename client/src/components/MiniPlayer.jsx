@@ -103,6 +103,7 @@ export default function MiniPlayer({
               alt={track.title}
               className="w-fill object-cover aspect-square rounded-md"
             />
+            
           )}
         </div>
         <div className="flex flex-col mx-auto">
