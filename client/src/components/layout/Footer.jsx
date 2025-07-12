@@ -30,7 +30,7 @@ export default function Footer() {
           className="footer container flex flex-col items-center mb-[25vw] md:mb-0 text-white bg-black"
         >
           <Link to="/">
-            <img src="./assets/RanVin_wh.png" alt="" />
+            <img src="/assets/RanVin_wh.png" alt="" />
           </Link>
           <div className="inline-flex gap-4 my-4">
             <a href="https://www.youtube.com/">

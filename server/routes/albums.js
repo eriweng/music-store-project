@@ -7,4 +7,15 @@ router.get('/', (req, res) => {
   res.json(albums);
 });
 
+router.get("/:id", (req, res) => {
+  const albumId = parseInt(req.params.id, 10);
+  const album = albums.find((a) => a.id === albumId);
+
+  if (!album) {
+    return res.status(404).json({ error: "Album not found" });
+  }
+
+  res.json(album);
+});
+
 module.exports = router; 

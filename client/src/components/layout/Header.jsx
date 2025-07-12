@@ -53,7 +53,7 @@ export default function Header() {
         {/* Logo go here */}
         <Link to="/">
           <div id="header-brandLogo" className="w-[150px]">
-            <img src="./assets/RanVin_wh.png" alt="brandLogo" />
+            <img src="/assets/RanVin_wh.png" alt="brandLogo" />
           </div>
         </Link>
         {/* Logo end */}

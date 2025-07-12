@@ -25,3 +25,15 @@ try {
 🛑 資源尚未載入完成	audio 還沒 ready，play() 就被呼叫了
 ❌ 播放 URL 錯誤	音訊檔案不存在、無法存取
 🧱 被其他播放打斷	同時間有別的音訊、影片正在播放
+
+  router.get("/:id", (req, res) => {
+  const albumId = parseInt(req.params.id, 10);
+  const album = albums.find((a) => a.id === albumId);
+
+  if (!album) {
+    return res.status(404).json({ error: "Album not found" });
+  }
+
+  res.json(albums);
+});
+module.exports = router;
