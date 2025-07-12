@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import { Menu, X, ShoppingCart, Search } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const { cartItems } = useCart();
+  const totalQty = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   const navLinks = (
     <>
       <Link to="/music" className="">
@@ -46,7 +50,7 @@ export default function Header() {
 
   return (
     <header className="relative mx-[15px]">
-      <div className="container flex justify-between items-center">
+      <div className="container flex justify-between pr-3 items-center transition-all">
         {/* Mobile Menu Icon */}
         {/* md（medium, 768px） */}
 
@@ -65,10 +69,10 @@ export default function Header() {
           {isOpen ? <X size={35} /> : <Menu size={35} />}
         </button>
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex flex-nowrap lg:ml-[4vw] gap-8 text-lg font-medium text-white">
+        <nav className="hidden lg:flex flex-nowrap lg:ml-[4vw] p-3 gap-6 text-lg text-normal text-white">
           {navLinks}
         </nav>
-        <div className="hidden w-full lg:flex gap-4 items-center justify-end">
+        <div className="hidden w-full lg:flex gap-3 items-center justify-end">
           <form class="searchBar">
             <div class="relative">
               <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none"></div>
@@ -84,14 +88,19 @@ export default function Header() {
           {/* <button className="">
             <Search size={30} className="text-white" />
           </button> */}
-          <button className="">
+          <Link to="/cart">
             <ShoppingCart size={30} className=" text-white" />
-          </button>
+            {totalQty > 0 && (
+              <span className="absolute top-1 -right-5 h-7 w-7 bg-black border text-white text-xs py-1 pl-2 rounded-full ">
+                {totalQty}
+              </span>
+            )}
+          </Link>
         </div>
         {/* Mobile Dropdown Nav */}
         {isOpen && (
           <>
-            <nav className="absolute top-10 left-0 z-50 flex flex-col w-full py-10 text-sm lg:hidden text-white bg-black">
+            <nav className="absolute top-10 left-0 z-50 flex flex-col w-full py-10 text-sm  lg:hidden text-white bg-black">
               <div className="flex gap-4 items-center ml-auto">
                 {/* <button
                   onClick={() => setIsOpen(!isOpen)}
@@ -125,9 +134,14 @@ export default function Header() {
                   </>
                 )}
 
-                <button className="">
+                <Link to="/cart">
                   <ShoppingCart size={30} className=" text-white" />
-                </button>
+                  {totalQty > 0 && (
+                    <span className="absolute top-7 -right-3 h-6 w-6 bg-black border text-white text-xs px-2 py-1 text-center rounded-full">
+                      {totalQty}
+                    </span>
+                  )}
+                </Link>
               </div>
               <div className="flex flex-col gap-5 mt-10">{navLinks}</div>
             </nav>

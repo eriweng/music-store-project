@@ -1,26 +1,29 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { CirclePlay } from "lucide-react";
+import { useCart } from "../context/CartContext";
 import Playlist from "../components/Playlist";
-
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 
 export default function AlbumPage() {
   const { id } = useParams();
   console.log("useParams id:", id);
+  const options = [
+    { id: "vinyl", label: "Vinyl", price: "11.99" },
+    { id: "wav", label: "WAV", price: "3.99" },
+    { id: "mp3", label: "MP3", price: "3.99" },
+  ];
 
   const [album, setAlbum] = useState(null);
-  const options = [
-    { id: "vinyl", label: "Vinyl", price: "$11.99" },
-    { id: "wav", label: "WAV", price: "$3.99" },
-    { id: "mp3", label: "MP3", price: "$3.99" },
-  ];
+  const [selectedOption, setSelectedOption] = useState(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     if (!id) {
       console.warn("⛔ 沒有拿到 id，跳出 early return");
-      return}
+      return;
+    }
 
     fetch(`http://localhost:5000/api/albums/${id}`)
       .then((res) => {
@@ -37,14 +40,6 @@ export default function AlbumPage() {
 
   if (!album) return <div className="text-white">Loading...</div>;
   console.log(album.mode);
-  // useEffect(() => {
-  //   if (album) {
-  //     console.log("album.images", album.images);
-  //   }
-  // }, [album]);
-
-  // console.log(album);
-  // console.log(album.images);
 
   return (
     <>
@@ -55,7 +50,7 @@ export default function AlbumPage() {
           <div className="rwd-layout md:flex gap-10">
             <div className="for-rwd">
               <section className="one flex flex-col mb-5">
-                <div className="image-big min-w-min-[200px] w-full h-full overflow-hidden mb-5">
+                <div className="flex image-big min-w-min-[200px] w-full h-full justify-center overflow-hidden mb-5">
                   <img
                     src={album.coverImage}
                     className="aspect-square object-cover"
@@ -89,9 +84,9 @@ export default function AlbumPage() {
                       <h1 className="text-2xl font-bold">{album.title}</h1>
                       <p>{album.artist}</p>
                     </div>
-                    <button>
+                    {/* <button>
                       <CirclePlay className="mt-auto size-[30px]" />
-                    </button>
+                    </button> */}
                   </div>
                   <hr className="my-2 border-t-normal" />
                   <p className="mt-2">
@@ -105,36 +100,27 @@ export default function AlbumPage() {
                     <div className="space-y-3">
                       {options.map((opt) => (
                         <div key={opt.id}>
+                          <input
+                            type="radio"
+                            id={`audio-${opt.id}`}
+                            name="audio"
+                            value={opt.id}
+                            onChange={() => setSelectedOption(opt)}
+                            className="peer hidden"
+                          />
                           <label
                             htmlFor={`audio-${opt.id}`}
-                            className={`
-                  flex w-full h-[8vh] px-5 mb-4 items-center justify-between 
-                  cursor-pointer text-white 
-                  bg-zinc-900 transition-all
-                  hover:bg-white/5
-                `}
+                            className={`flex w-full h-[8vh] px-5 mb-4 items-center justify-between hover:bg-white/5 peer-checked:border-2 peer-checked:border-white`}
                           >
-                            <input
-                              type="radio"
-                              id={`audio-${opt.id}`}
-                              name="audio"
-                              value={opt.id}
-                              className="peer hidden"
-                            />
                             {/* radio indicator 指示 */}
                             <span
                               className={`
-                  w-4 h-4 rounded-full border-2
-                  borer-white
-                  peer-checked:bg-white
-                  transition-all mr-3
-                `}
+                  w-4 h-4 rounded-full border-2 borer-white peer-checked:bg-white transition-all mr-3`}
                             ></span>
-
                             {/* label + price */}
                             <div className="flex justify-between w-full text-md font-medium peer-checked:font-semibold">
                               <span>{opt.label}</span>
-                              <span>{opt.price}</span>
+                              <span>${opt.price}</span>
                             </div>
                           </label>
                         </div>
@@ -143,7 +129,20 @@ export default function AlbumPage() {
                   </fieldset>
                   <button
                     id="add-to-cart"
-                    className="ml-auto mt-[-20px] p-3 text-sm text-nowrap border-white border-normal transition-all hover:bg-white hover:text-black active:font-black"
+                    onClick={() => {
+                      if (selectedOption) {
+                        addToCart({
+                          id: album.id,
+                          title: album.title,
+                          coverImage: album.coverImage,
+                          option: selectedOption.label,
+                          price: Number(selectedOption.price),
+                          quantity: 1,
+                        });
+                      }
+                    }}
+                    className="ml-auto mt
+                    -[-20px] p-3 text-sm text-nowrap border-white border-normal transition-all hover:bg-white hover:text-black active:font-black"
                   >
                     ADD TO CART
                   </button>
@@ -154,7 +153,7 @@ export default function AlbumPage() {
                 <Playlist album={album} />
               </section>
               {/* album's story */}
-              <section className="four text-white mb-10">
+              <section className="four text-white mb-10 selection:bg-fuchsia-300 selection:text-fuchsia-900">
                 <p className="break-normal">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.

@@ -14,24 +14,27 @@ export default function Playlist(album) {
         <p>NO songs found.</p>
       ) : (
         songs.map((song, i) => (
-          <div
-            key={song.id}
-            className="single-track flex py-5 font-light items-center justify-between"
-          >
-            <div className="flex gap-3">
-              <a href="#album">
-                <span>{song.title}</span>
-              </a>
-              <span>-</span>
-              <a href="#artist">
-                <span>{realAlbum.artist}</span>
-              </a>
+          <>
+            <div
+              key={song.id}
+              className="single-track flex py-5 font-light items-center justify-between border-b-white"
+            >
+              <div className="flex gap-3">
+                <a href="#album">
+                  <span>{song.title}</span>
+                </a>
+                <span>-</span>
+                <a href="#artist">
+                  <span>{realAlbum.artist}</span>
+                </a>
+              </div>
+              {/* <span className="inline-block ml-auto mr-5">3:33</span> */}
+              <button>
+                <CirclePlay className="ml-auto size-[30px]" />
+              </button>
             </div>
-            {/* <span className="inline-block ml-auto mr-5">3:33</span> */}
-            <button>
-              <CirclePlay className="ml-auto size-[30px]" />
-            </button>
-          </div>
+            <hr className="border-t-normal" />
+          </>
         ))
       )}
     </div>

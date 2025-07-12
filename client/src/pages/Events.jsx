@@ -37,7 +37,7 @@ export default function Events(event) {
     <div className="events container">
       <Header />
       <div className="event sm-container-space lg:lg-container-space">
-        <h2 className="text-right text-white">EVENTS</h2>
+        <h2 className="text-right text-xl text-white">EVENTS</h2>
         <hr className="border-normal" />
         <div className="event-block-group flex flex-col gap-5 my-5 justify-between">
           <div className="my-12">{eventCardElement}</div>

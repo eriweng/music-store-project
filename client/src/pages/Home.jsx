@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useActionData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "../components/layout/Header";
 import Main from "../components/layout/Main";
 import Footer from "../components/layout/Footer";
@@ -20,6 +20,8 @@ export default function Home() {
   useEffect(() => {
     // 載入 albums.json
     fetch("http://localhost:5000/api/albums")
+      // call 完 api 需要先將 response 用 .json 轉換成 json 格式，
+      // 然後再用下一個 then 取用 data
       .then((res) => {
         console.log("albums API status:", res.status);
         if (!res.ok) throw new Error("albums API res failed");
@@ -85,7 +87,6 @@ export default function Home() {
         onPlay={(track) => {
           handlePlay(track);
         }}
-        isPlaying={isPlaying}
       />
     );
   });
@@ -102,8 +103,10 @@ export default function Home() {
         {/* main */}
         <Main />
         {/* music block */}
-        <div className="sm-container-space lg:lg-container-space">
-          <h2 className="text-white">MUSIC</h2>
+        <div className="music sm-container-space lg:lg-container-space">
+          <Link to={"/music"}>
+            <h2 className="text-xl text-white">MUSIC</h2>
+          </Link>
           <hr className="border-normal" />
           <div className="music my-12 grid grid-cols-2 gap-x-2 gap-y-10 items-center lg:grid-cols-3 xl:grid-cols-4">
             {musicCardElement}
@@ -114,7 +117,9 @@ export default function Home() {
 
         {/* events block */}
         <div className="event sm-container-space lg:lg-container-space">
-          <h2 className="text-white">EVENTS</h2>
+          <Link to={"/events"}>
+            <h2 className="text-xl text-white">EVENTS</h2>
+          </Link>
           <hr className="border-normal" />
           <div className="lg:grid lg:grid-cols-2 lg:grid-flow-col lg:gap-8">
             <EventPresents />
@@ -126,6 +131,7 @@ export default function Home() {
         </div>
         {/* <hr className="sm-container-space lg:lg-container-space border-normal mb-12" /> */}
         {/* footer is here */}
+
         <Footer />
       </div>
 

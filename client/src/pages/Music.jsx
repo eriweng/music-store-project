@@ -67,7 +67,7 @@ export default function Music() {
         <Header />
         {/* music block */}
         <div className="music-section sm-container-space lg:lg-container-space">
-          <h1 className="text-right text-white">MUSIC</h1>
+          <h1 className="text-right text-xl text-white">MUSIC</h1>
           <hr className="border-normal" />
           <div className="music my-12 grid grid-cols-2 gap-x-2 gap-y-10 items-center md:grid-cols-3 xl:grid-cols-4">
             {musicCardElement}

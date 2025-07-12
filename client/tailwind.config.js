@@ -10,7 +10,9 @@ export default {
       borderWidth: {
         normal: "0.6px",
       },
-
+      animation: {
+        "spin-slow": "spin 2s linear infinite",
+      },
     },
     container: {
       center: true,

@@ -9,9 +9,17 @@
   background-color: black;
 }
 
+html,
+body {
+  background-color: black;
+  color: white;
+  /* 可選，預設文字為白色 */
+  min-height: 100%;
+}
+
 .sm-container-space {
-  @apply mx-[15px] my-[30px];
+  @apply mx-[15px] my-[50px];
 }
 .lg-container-space {
-  @apply mx-[50px] my-[40px];
+  @apply mx-[50px] my-[100px];
 }

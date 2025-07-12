@@ -1,8 +1,8 @@
 export default function EventCard({ event }) {
   return (
     <>
-      <div className="w-full h-full lg:h-[200px] inline-flex lg:flex-row-reverse gap-3 items-center text-white cursor-pointer lg:hover:bg-white lg:hover:text-black lg:hover:font-black lg:hover:py-4 lg:hover:pl-4">
-        <div className="event-img aspect-square w-[120px] lg:w-[200px] lg:float-start lg:ml-2">
+      <div className="w-full h-full lg:h-[200px] inline-flex lg:flex-row-reverse gap-5 items-center text-white cursor-pointer lg:hover:bg-white lg:hover:text-black lg:hover:font-black lg:hover:py-4 lg:hover:pl-4">
+        <div className="event-img aspect-square max-w-[120px] lg:max-w-[200px] lg:float-start lg:ml-2">
           <img
             className="object-cover w-full h-full"
             src={event.image}
@@ -11,9 +11,9 @@ export default function EventCard({ event }) {
         </div>
         <div className="eventBoard-info inline-flex flex-col self-stretch items-start justify-between text-wrap lg:my-7 lg:mr-auto lg:flex-1">
           <div className="eventBoard-title-w-tags-outside flex flex-col gap-5 self-stretch justify-start items-start">
-            <div className=" eventBoard-title-w-tags-inside flex flex-col justify-center">
-              <span>{event.title}</span>
-              <span>{event.tags.join(", ")}</span>
+            <div className=" eventBoard-title-w-tags-inside flex flex-col justify-center gap-2">
+              <span className="text-lg font-medium break-words">{event.title}</span>
+              <span className="text-sm font-normal"># {event.tags.join(", ")}</span>
             </div>
           </div>
 

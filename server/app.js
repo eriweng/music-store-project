@@ -1,23 +1,21 @@
 // server's router center is here
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
+const express = require("express");
+const path = require("path");
+const cors = require("cors");
 const app = express();
-const albumsRouter = require('./routes/albums'); 
-const eventsRouter = require('./routes/events')
-  // ✅ 引入路由模組
+const albumsRouter = require("./routes/albums");
+const eventsRouter = require("./routes/events");
 
 const port = 5000;
 
-
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, "../public")));
 
 // ✅ 使用路由：加上正確的前綴 "/api/albums"
-app.use('/api/albums', albumsRouter);
-app.use('/api/events', eventsRouter)
+app.use("/api/albums", albumsRouter);
+app.use("/api/events", eventsRouter);
 
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`)
-})
+  console.log(`Server running on http://localhost:${port}`);
+});
