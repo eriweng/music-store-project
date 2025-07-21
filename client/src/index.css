@@ -17,9 +17,26 @@ body {
   min-height: 100%;
 }
 
+body.white-theme {
+  background-color: white;
+  color: black;
+}
+
+#root.white-root {
+  background-color: white;
+  color: black;
+}
+
+#root.noPaddingTop {
+  padding: 0;
+}
 .sm-container-space {
   @apply mx-[15px] my-[50px];
 }
 .lg-container-space {
   @apply mx-[50px] my-[100px];
+}
+
+.white-container {
+  @apply bg-white;
 }

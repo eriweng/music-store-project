@@ -16,6 +16,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use("/api/albums", albumsRouter);
 app.use("/api/events", eventsRouter);
 
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

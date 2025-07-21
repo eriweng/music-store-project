@@ -49,8 +49,8 @@ export default function Header() {
   );
 
   return (
-    <header className="relative mx-[15px]">
-      <div className="container flex justify-between pr-3 items-center transition-all">
+    <header className="relative mx-[15px] bg-black">
+      <div className="container flex justify-between items-center transition-all">
         {/* Mobile Menu Icon */}
         {/* md（medium, 768px） */}
 
@@ -79,7 +79,7 @@ export default function Header() {
               <input
                 type="text"
                 id="default-search"
-                class="block w-full h-9 rounded-lg text-sm text-white  bg-zinc-900 placeholder-gray-400 hover:border-2"
+                class="block w-full h-full text-sm text-white  bg-zinc-900 placeholder-gray-400 hover:border-2"
                 placeholder="Search"
                 required
               />
@@ -89,7 +89,7 @@ export default function Header() {
             <Search size={30} className="text-white" />
           </button> */}
           <Link to="/cart">
-            <ShoppingCart size={30} className=" text-white" />
+            <ShoppingCart size={30} className=" text-white ml-2" />
             {totalQty > 0 && (
               <span className="absolute top-1 -right-5 h-7 w-7 bg-black border text-white text-xs py-1 pl-2 rounded-full ">
                 {totalQty}
@@ -125,7 +125,7 @@ export default function Header() {
                         <input
                           type="text"
                           id="default-search"
-                          class="block w-full h-9 rounded-lg text-sm bg-zinc-900 placeholder-gray-400 hover:border-2"
+                          class="block w-full h-9 text-sm bg-zinc-900 placeholder-gray-400 hover:border-2"
                           placeholder="Search"
                           required
                         />

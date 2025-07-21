@@ -45,7 +45,7 @@ export default function CartPage() {
                             <span className="text-sm">{item.option}</span>
                             <div className="flex items-center gap-3">
                               <button
-                                className="text-lg"
+                                className="text-2xl p-2"
                                 onClick={() =>
                                   updateQuantity(
                                     item.id,
@@ -57,9 +57,9 @@ export default function CartPage() {
                               >
                                 -
                               </button>
-                              <span>{item.quantity}</span>
+                              <span className="text-md">{item.quantity}</span>
                               <button
-                                className="text-lg"
+                                className="text-2xl p-2"
                                 onClick={() =>
                                   updateQuantity(
                                     item.id,
@@ -74,7 +74,9 @@ export default function CartPage() {
                           </div>
                         </div>
                         <div className="flex flex-col gap-2 justify-end items-end">
-                          <span className="text-xl">${item.price}</span>
+                          <span className="text-xl">
+                            ${item.price * item.quantity}
+                          </span>
                           <button
                             className="text-sm"
                             onClick={() => removeFromCart(item.id, item.option)}
@@ -98,12 +100,14 @@ export default function CartPage() {
               ${totalPrice.toFixed(2)}
             </span>
           </div>
-          <button
-            className="for-checkout p-3 text-sm text-nowrap border-white border-normal transition-all lg:w-1/4 lg:ml-auto hover:bg-white hover:text-black active:font-black disabled:hover:bg-black disabled:hover:text-red-600"
-            disabled={cartItems.length === 0}
-          >
-            CHECK OUT
-          </button>
+          <Link to="/shippingForm">
+            <button
+              className="for-checkout p-3 text-sm text-nowrap border-white border-normal transition-all lg:w-1/4 lg:ml-auto hover:bg-white hover:text-black active:font-black disabled:hover:bg-black disabled:hover:text-red-600"
+              disabled={cartItems.length === 0}
+            >
+              CHECK OUT
+            </button>
+          </Link>
         </section>
       </div>
       <div className="bg-black">

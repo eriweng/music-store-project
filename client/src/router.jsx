@@ -5,6 +5,7 @@ import Music from "./pages/Music";
 import AlbumPage from "./pages/AlbumPage";
 import Events from "./pages/Events";
 import CartPage from "./pages/CartPage";
+import ShippingForm from "./pages/ShippingForm";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -12,4 +13,5 @@ export const router = createBrowserRouter([
   { path: "/album/:id", element: <AlbumPage /> },
   { path: "/events", element: <Events /> },
   { path: "/cart", element: <CartPage /> },
+  { path: "/shippingForm", element: <ShippingForm /> },
 ]);
