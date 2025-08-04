@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../components/layout/Header";
 import EventCard from "../components/EventCard";
+import SubmitForm from "../components/SubmitForm";
 import Footer from "../components/layout/Footer";
 
 export default function Events(event) {
@@ -42,6 +43,7 @@ export default function Events(event) {
         <div className="event-block-group flex flex-col gap-5 my-5 justify-between">
           <div className="my-12">{eventCardElement}</div>
         </div>
+        <SubmitForm />
       </div>
       <Footer />
     </div>

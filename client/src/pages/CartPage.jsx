@@ -1,7 +1,9 @@
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import ShippingForm from "./ShippingForm";
 
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
@@ -11,16 +13,23 @@ export default function CartPage() {
     return sum + price * qty;
   }, 0);
   console.log(totalPrice);
+  const navigate = useNavigate();
+
+  function handleCheckout() {
+    if (cartItems.length === 0) return;
+    // Navigate to the shipping form page
+    navigate("/ShippingForm");
+  }
 
   return (
     <div className="cart container">
       <Header />
       <div className="sm-container-space lg:lg-container-space">
         <section className="your-cart-items bg-black text-white">
-          <h1 className="text-xl mb-3">Your Cart</h1>
+          <h2 className="text-xl text-white text-right">YOUR CART</h2>
           <hr className="border-normal" />
           {cartItems.length === 0 ? (
-            <p className="text-xl w-full mt-5 p-5 text-center ">
+            <p className="text-2xl w-full mt-5 p-5 text-center ">
               Your cart is empty T^T
             </p>
           ) : (
@@ -75,7 +84,7 @@ export default function CartPage() {
                         </div>
                         <div className="flex flex-col gap-2 justify-end items-end">
                           <span className="text-xl">
-                            ${item.price * item.quantity}
+                            ${(item.price * item.quantity).toFixed(2)}
                           </span>
                           <button
                             className="text-sm"
@@ -100,14 +109,14 @@ export default function CartPage() {
               ${totalPrice.toFixed(2)}
             </span>
           </div>
-          <Link to="/shippingForm">
-            <button
-              className="for-checkout p-3 text-sm text-nowrap border-white border-normal transition-all lg:w-1/4 lg:ml-auto hover:bg-white hover:text-black active:font-black disabled:hover:bg-black disabled:hover:text-red-600"
-              disabled={cartItems.length === 0}
-            >
-              CHECK OUT
-            </button>
-          </Link>
+
+          <button
+            onClick={handleCheckout}
+            className="for-checkout p-3 text-sm text-nowrap transition-all w-full lg:w-1/4 lg:ml-auto hover:bg-white hover:text-black active:font-black disabled:hover:bg-black disabled:hover:text-red-600"
+            disabled={cartItems.length === 0}
+          >
+            CHECK OUT
+          </button>
         </section>
       </div>
       <div className="bg-black">

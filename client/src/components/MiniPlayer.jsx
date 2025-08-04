@@ -93,7 +93,7 @@ export default function MiniPlayer({
 
   return (
     <>
-      <div className="fixed bottom-0 right-0 w-full sm:w-auto bg-zinc-900 text-white px-3 py-2 flex items-center justify-between shadow-lg">
+      <div className="fixed bottom-0 right-0 z-40 w-full sm:w-auto bg-zinc-900 text-white px-3 py-2 flex items-center justify-between shadow-lg">
         {/* 專輯封面+資訊 */}
         <div className="w-[90px] mx-auto sm:mr-5">
           {track.coverImage && (

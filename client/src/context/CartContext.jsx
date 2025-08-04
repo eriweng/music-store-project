@@ -40,12 +40,11 @@ export function CartProvider({ children }) {
       // 若已存在，直接更新數量 (-1 = false, not existing)
       if (existingItemIndex !== -1) {
         const updateCart = [...prev];
-        updateCart[existingItemIndex].quantity += item.quantity;
+        updateCart[existingItemIndex].quantity += 1;
         console.log("更新後的購物車", updateCart);
         return updateCart;
       }
-      // console.log("加入的新商品", item);
-      return [...prev, item];
+      return [...prev, { ...item, quantity: 1 }];
     });
   }
 

@@ -14,7 +14,7 @@ body {
   background-color: black;
   color: white;
   /* 可選，預設文字為白色 */
-  min-height: 100%;
+  height: 100%;
 }
 
 body.white-theme {

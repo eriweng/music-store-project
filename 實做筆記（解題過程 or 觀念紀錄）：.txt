@@ -37,3 +37,81 @@ try {
   res.json(albums);
 });
 module.exports = router;
+
+<form 
+id="_form_aiochk" 
+action="https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5" 
+method="post">
+
+🦁 有：
+<input type="hidden" 
+name="MerchantTradeNo" 
+id="MerchantTradeNo" 
+value="T1753428354392" />
+🦁 有：
+<input type="hidden" 
+name="MerchantTradeDate" id="MerchantTradeDate" 
+value="2025/07/25 15:25:54" />
+🦁 有：
+<input type="hidden" 
+name="TotalAmount" 
+id="TotalAmount" 
+value="28" />
+🦁 有：
+<input type="hidden" 
+name="TradeDesc" 
+id="TradeDesc" 
+value="交易描述範例" />
+🦁 有：
+<input type="hidden" 
+name="ItemName" 
+id="ItemName" 
+value="Days.Vinyl x 1#Waves of Sand.Vinyl x 1#Dev Mode.MP3 x 1" />
+🦁 有：
+<input type="hidden" 
+name="ReturnURL" 
+id="ReturnURL" 
+value="https://1866f595eb7a.ngrok-free.app/api/payments/ecpay/callback" />
+🦁 有：
+<input type="hidden" 
+name="PaymentType" 
+id="PaymentType" 
+value="aio" />
+🦁 有：
+<input type="hidden" 
+name="ChoosePayment" 
+id="ChoosePayment" 
+value="ALL" />
+🦁 有：
+<input type="hidden" 
+name="EncryptType" 
+id="EncryptType" 
+value="1" />
+
+<input type="hidden" 
+name="PlatformID" 
+id="PlatformID" 
+value="" />
+<input type="hidden" 
+name="MerchantID" 
+id="MerchantID" 
+value="3002607" />
+<input type="hidden" 
+name="InvoiceMark" 
+id="InvoiceMark" 
+value="N" />
+<input type="hidden" 
+name="IgnorePayment" 
+id="IgnorePayment" 
+value="" />
+<input type="hidden" 
+name="DeviceSource" 
+id="DeviceSource" 
+value="" />
+<input type="hidden" 
+name="CheckMacValue" 
+id="CheckMacValue" value="8B79CF473627E8738AE06D370E7C7F15B6E27A02A0C2FF14AD36A180C6C5E57D" />
+<script type="text/javascript">
+document.getElementById("_form_aiochk")
+.submit();</script>
+</form>

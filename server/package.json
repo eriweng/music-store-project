@@ -16,6 +16,8 @@
     "axios": "^1.10.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
+    "ecpay_aio_nodejs": "^1.2.2",
+    "ecpay-payment": "^1.1.1",
     "express": "^5.1.0"
   },
   "devDependencies": {
